@@ -1,0 +1,103 @@
+﻿@model project_for_nothing_1.Models.Board
+@{
+	ViewData["Title"] = "View Board Columns";
+}
+
+<h2>@Model.Name</h2>
+
+<p>
+	<strong>Project:</strong> @Model.Project?.Name
+</p>
+
+<p>
+	<a class="btn btn-primary btn-sm"
+	asp-controller="BoardColumns"
+	asp-action="Create"
+	asp-route-boardId="@Model.Id">
+	+ Add Column
+	</a>
+
+	<a class="btn btn-secondary btn-sm"
+	asp-controller="Boards"
+	asp-action="Index">
+	Back
+	</a>
+</p>
+
+<hr />
+
+@if(Model.Columns.Any())
+{
+	<div class="row">
+		@foreach(var col in Model.Columns.OrderBy(c=>c.Order))
+		{
+			<div class="col-md-4">
+<div class="card shadow-sm mb-4">
+	<div class="card-header d-flex justify-content-between align-items-center">
+		<strong>@col.Name</strong>
+		<span>
+			<a class="btn btn-warning bnt-sm"
+			asp-controller="BoardColumns"
+			asp-action="Edit"
+			asp-route-id="@col.Id">
+		Edit</a>
+
+		<a class="btn btn-danger btn-sm"
+		asp-controller="BoardColumns"
+		asp-action="Delete"
+		asp-route-id="=@col.Id">
+		delete
+		</a>
+
+		</span>
+
+		
+	</div>
+
+
+	<div class="card-body">
+	@if(col.Tasks.Any())
+						{
+							<ul class="list-group">
+								@foreach(var task in col.Tasks.OrderBy(t=>t.Order))
+								{
+									<li class="list-group-item d-flex justify-content-between align-items-center">
+										@task.Name
+
+										<a class="btn btn-outline-secondary btn-sm"
+										asp-controller="TaskItems"
+										asp-action="Edit"
+										asp-route-id="@task.Id"
+										Edit
+										</a>
+									</li>
+								}
+							</ul>
+						}
+
+						else
+						{
+							<p class="text-muted">No tasks yet.</p>
+						}
+
+						<a class="btn btn-success btn-sm mt-2"
+						asp-controller="TaskItems"
+						asp-action="Create"
+						asp-route-columnId="@col.Id">
+					+ Add Task
+				</a>
+					</div>
+</div></div>
+		}
+	</div>
+
+
+}
+
+
+else
+{
+	<p>
+		There are no columns, go make some
+	</p>
+}

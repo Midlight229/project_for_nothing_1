@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
 using project_for_nothing_1.CodeData;
 
 var builder = WebApplication.CreateBuilder(args);

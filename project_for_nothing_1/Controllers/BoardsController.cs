@@ -56,11 +56,16 @@ namespace project_for_nothing_1.Controllers
         [HttpPost,ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Board model)
         {
+            /*foreach(var  error in ModelState)
+            {
+                Console.WriteLine($"{error.Key} => {string.Join("; ", error.Value.Errors.Select(e=>e.ErrorMessage))}");
+            }
+
             if (!ModelState.IsValid)
             {
                 await FillProjectsSelect(model.ProjectId);
                 return View(model);
-            }
+            }*/
 
             _db.Add(model);
             await _db.SaveChangesAsync();
