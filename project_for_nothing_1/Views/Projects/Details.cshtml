@@ -1,0 +1,35 @@
+﻿
+@model project_for_nothing_1.Models.Project
+@{
+	ViewData["Title"] = "Details Project";
+}
+
+<h2>@Model.Name</h2>
+
+<p>@Model.Description</p>
+
+<h4>Boards</h4>
+
+<p>
+	<a asp-controller="Boards" asp-action="Create" asp-route-projectId="@Model.Id" class="btn btn-primary btn-sm">+ Add </a>
+</p>
+
+@if(!Model.Boards.Any())
+{
+	<p class="text-muted">This project has long ways to go...</p>
+}
+
+else
+{
+	<ul class="list-group">
+		@foreach (var board in Model.Boards)
+		{
+			<li class="list-group-item d-flex justify-content-between">
+				<span>@board.Name</span>
+				<a asp-controller="Boards" asp-action="Details" asp-route-id="@board.Id" class="btn btn-info btn-sm">Open</a>
+
+			</li>
+							
+		}
+	</ul>
+}
