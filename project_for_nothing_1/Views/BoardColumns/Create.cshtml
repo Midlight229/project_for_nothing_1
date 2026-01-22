@@ -1,0 +1,16 @@
+﻿@model project_for_nothing_1.Models.BoardColumn
+@{
+	ViewData["Title"] = "Create Column";
+}
+
+<form asp-action ="Create" method="post">
+	@Html.AntiForgeryToken()
+	<input type="hidden" name="boardId" value="@ViewBag.BoardId"/>
+
+	<div class="mb-3">
+		<label class="form-label">Column name</label>
+		<input name="Name" class="form-control"/>
+	</div>
+
+	<button class="btn btn-primary">Create</button>
+</form>

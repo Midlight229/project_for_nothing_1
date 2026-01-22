@@ -12,5 +12,7 @@ namespace project_for_nothing_1.Models
         public string? Email {  get; set; }
 
         public ICollection<TaskItem> Tasks { get; set; } = new List<TaskItem>();
+
+        public string? AvatarUrl { get; set; }
     }
 }

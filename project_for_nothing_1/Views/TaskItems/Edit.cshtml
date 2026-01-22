@@ -1,0 +1,50 @@
+﻿@model project_for_nothing_1.Models.TaskItem
+@{
+	ViewData["Title"] = "Edit the task";
+}
+
+<form asp-action="Edit" method="post">
+	@Html.AntiForgeryToken()
+	<!--<input type="hidden" name="columnId" value="@ViewBag.ColumndId"/>-->
+	<!--<input type="hidden" asp-for="ColumnId" />-->
+
+	<input type="hidden" asp-for="ColumnId" />
+	<input type="hidden" asp-for="Id" />
+
+	<div class="mb-3">
+		<label class="form-label">Task Title</label>
+		<input name="Title" class="form-control" />
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Description"></label>
+		<textarea asp-for="Description" class="form-control"></textarea>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Priority"></label>
+		<select asp-for="Priority" class="form-select">
+			<option value="0">Low</option>
+			<option value="1">Medium</option>
+			<option value="2">High</option>
+			<option value="3">Critical</option>
+			
+		</select>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="DueDate">
+			<input asp-for="DueDate" type="date" class="form-control" />
+		</label>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="AssigneeId" class="form-label">Assignee</label>
+		<select asp-for="AssigneeId" class="form-select"
+				asp-items="@(new SelectList(ViewBag.Assignees, "Id", "FullName"))">
+			<option value="">-- Unassigned --</option>
+		</select>
+	</div>
+
+	<button class="btn btn-primary">Save Changes</button>
+</form>

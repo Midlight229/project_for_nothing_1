@@ -1,0 +1,29 @@
+﻿@model project_for_nothing_1.Models.TaskItem
+@{
+	ViewData["Title"] = "Delete Task";
+}
+
+<h2>Delete Task</h2>
+
+<div class="alert alert-danger">
+	<h4>Are you sure you want to delete this task?</h4>
+</div>
+
+<div class="mb-3">
+	<strong>Name:</strong> @Model.Title
+</div>
+
+<div>diwFNFJEWAFNJEWOPnfWIOFNFWPFNHWFNHWEPFNWEFNWEFW lol</div>
+
+<div class="mb-3">
+	<strong>Description:</strong> @Model.Description
+</div>
+
+<form method="post" asp-action="Delete">
+	@Html.AntiForgeryToken()
+
+	<input type="hidden" asp-formaction="Id" />
+
+	<button class="btn btn-danger" type="submit">Delete</button>
+	<a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
